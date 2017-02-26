@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Schema\Type;
+
+use Youshido\GraphQL\Type\Object\AbstractObjectType;
+use Youshido\GraphQL\Type\Scalar\BooleanType;
+use Youshido\GraphQL\Type\Scalar\IntType;
+use Youshido\GraphQL\Type\Scalar\StringType;
+
+class PostType extends AbstractObjectType   // extending abstract Object type
+{
+    public function build($config)
+    {
+        $config->addFields([
+            'title' => [
+                'type' => new StringType(),
+                'description' => 'the title of the post',
+                'args' => [
+                    'truncate' => new BooleanType(),
+                ],
+            ],
+            'summary' => new StringType(),
+            'likesCount' => new IntType(),
+        ]);
+    }
+}
