@@ -2,6 +2,7 @@
 
 namespace App\Schema\Type;
 
+use App\DataProvider;
 use Youshido\GraphQL\Type\Object\AbstractObjectType;
 use Youshido\GraphQL\Type\Scalar\BooleanType;
 use Youshido\GraphQL\Type\Scalar\IntType;
@@ -19,8 +20,15 @@ class PostType extends AbstractObjectType   // extending abstract Object type
                     'truncate' => new BooleanType(),
                 ],
             ],
+            'title' => new StringType(),
+            'status' => new IntType(),
             'summary' => new StringType(),
             'likesCount' => new IntType(),
         ]);
+    }
+
+    public function getOne(int $id)
+    {
+        return DataProvider\Post::getPost($id);
     }
 }

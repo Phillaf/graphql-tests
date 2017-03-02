@@ -1,13 +1,18 @@
 <?php
 
-namespace App\Schema\Field;
+namespace App\Schema\Query;
 
 use App\Schema\Type\PostType;
 use Youshido\GraphQL\Execution\ResolveInfo;
 use Youshido\GraphQL\Field\AbstractField;
 
-class LatestPostField extends AbstractField
+class LatestPost extends AbstractField
 {
+    public function getName()
+    {
+        return 'latestPost';
+    }
+
     public function getType()
     {
         return new PostType();

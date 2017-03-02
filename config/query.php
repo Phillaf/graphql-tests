@@ -1,11 +1,13 @@
 <?php
 
-use App\Schema\Field\LatestPostField;
+use App\Schema\Query\LatestPost;
+use App\Schema\Mutation\LikePost;
 use Youshido\GraphQL\Type\Object\ObjectType;
 
 $query = new ObjectType([
     'name' => 'RootQueryType',
     'fields' => [
-        new LatestPostField,
+        new LatestPost,
+        new LikePost,
     ],
 ]);
