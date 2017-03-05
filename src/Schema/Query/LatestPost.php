@@ -21,8 +21,8 @@ class LatestPost extends AbstractField
     public function resolve($value, array $args, ResolveInfo $info)
     {
         return [
-            "title"   => "New approach in API has been revealed",
-            "summary" => "In two words - GraphQL Rocks!",
+            "title"   => "Sup",
+            "summary" => "Fellas",
             "likesCount" => 2,
         ];
     }

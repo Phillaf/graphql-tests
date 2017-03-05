@@ -23,11 +23,11 @@ class LikePost extends AbstractField
 
     public function getType()
     {
-        return new PostType();
+        return new IntType();
     }
 
     public function resolve($value, array $args, ResolveInfo $info)
     {
-        return $info->getReturnType()->getOne($args['id']);
+        return 2;
     }
 }
