@@ -2,10 +2,10 @@
 
 namespace App\Test\Unit\Schema;
 
+use App\Core\Test\Seeder;
 use App\Schema\Schema;
 use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Execution\Processor;
-use App\Core\Test\Seeder;
 
 class SchemaTest extends TestCase
 {

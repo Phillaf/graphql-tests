@@ -2,20 +2,15 @@
 
 namespace App\Core\Test;
 
+use App\Core\Test\Phinx;
 use Cake\Datasource\ConnectionManager;
 use Cake\ORM\TableRegistry;
-use Phinx\Console\PhinxApplication;
-use Phinx\Wrapper\TextWrapper;
 
 trait Seeder
 {
     public function setUp()
     {
-        $phinx = new TextWrapper(new PhinxApplication(), [
-            'environment' => 'default',
-            'configuration' => 'phinx.yml',
-            'parser' => 'yaml',
-        ]);
+        $phinx = Phinx::get();
         foreach ($this->seeds as $seed) {
             $phinx->getSeed(null, null, $seed);
         }
