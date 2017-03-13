@@ -26,9 +26,4 @@ class PostType extends AbstractObjectType   // extending abstract Object type
             'likesCount' => new IntType(),
         ]);
     }
-
-    public function getOne(int $id)
-    {
-        return DataProvider\Post::getPost($id);
-    }
 }

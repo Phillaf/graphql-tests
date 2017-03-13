@@ -6,6 +6,7 @@ use App\DataProvider;
 use App\Schema\Type\PostType;
 use Youshido\GraphQL\Execution\ResolveInfo;
 use Youshido\GraphQL\Field\AbstractField;
+use Cake\ORM\TableRegistry;
 
 class LatestPost extends AbstractField
 {
@@ -21,6 +22,8 @@ class LatestPost extends AbstractField
 
     public function resolve($value, array $args, ResolveInfo $info)
     {
-        return DataProvider\Post::getPost(1);
+        $posts = TableRegistry::get('Posts');
+        $results = $posts->find()->all();
+        return $results->toArray();
     }
 }

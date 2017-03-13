@@ -1,16 +1,11 @@
 <?php
 
-require_once '../vendor/autoload.php';
+require_once dirname(__DIR__) . '/vendor/autoload.php';
 
 use App\Schema\Schema;
 use Cake\Datasource\ConnectionManager;
 use Silex\Application;
 use Youshido\Silex\Provider\GraphQLControllerProvider;
-
-$app = new Application();
-
-require_once __DIR__ . '/query.php';
-require_once __DIR__ . '/mutation.php';
 
 ConnectionManager::setConfig('default', [
     'className' => 'Cake\Database\Connection',
@@ -22,8 +17,5 @@ ConnectionManager::setConfig('default', [
     'host' => '127.0.0.1',
 ]);
 
-$schema = new Schema();
-
-$app->mount('/', new GraphQLControllerProvider($schema));
-
-$app->run();
+$app = new Application();
+$app->mount('/', new GraphQLControllerProvider(new Schema()));
