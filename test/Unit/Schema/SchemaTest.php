@@ -1,19 +1,25 @@
 <?php
 
-namespace App\Test\Schema;
+namespace App\Test\Unit\Schema;
 
 use App\Schema\Schema;
-use Cake\Datasource\ConnectionManager;
 use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Execution\Processor;
+use App\Core\Test\Seeder;
 
 class SchemaTest extends TestCase
 {
+    use Seeder;
+
+    private $seeds = [
+        'Posts',
+    ];
+
     /** @test */
     public function latestPost()
     {
-        $result = $this->process('{ latestPost {title, summary} }');
-        $expected = '{"data":{"latestPost":{"title":"Sup","summary":"Fellas"}}}';
+        $result = $this->process('{ latestPost {title, body} }');
+        $expected = '{"data":{"latestPost":{"title":"Post 1","body":"Content 1"}}}';
         $this->assertEquals($expected, $result);
     }
 

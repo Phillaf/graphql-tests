@@ -21,9 +21,7 @@ class PostType extends AbstractObjectType   // extending abstract Object type
                 ],
             ],
             'title' => new StringType(),
-            'status' => new IntType(),
-            'summary' => new StringType(),
-            'likesCount' => new IntType(),
+            'body' => new StringType(),
         ]);
     }
 }

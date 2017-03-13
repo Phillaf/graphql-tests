@@ -23,7 +23,7 @@ class LatestPost extends AbstractField
     public function resolve($value, array $args, ResolveInfo $info)
     {
         $posts = TableRegistry::get('Posts');
-        $results = $posts->find()->all();
+        $results = $posts->find()->first();
         return $results->toArray();
     }
 }
