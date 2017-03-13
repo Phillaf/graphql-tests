@@ -2,6 +2,7 @@
 
 namespace App\Schema\Query;
 
+use App\DataProvider;
 use App\Schema\Type\PostType;
 use Youshido\GraphQL\Execution\ResolveInfo;
 use Youshido\GraphQL\Field\AbstractField;
@@ -20,10 +21,6 @@ class LatestPost extends AbstractField
 
     public function resolve($value, array $args, ResolveInfo $info)
     {
-        return [
-            "title"   => "Sup",
-            "summary" => "Fellas",
-            "likesCount" => 2,
-        ];
+        return DataProvider\Post::getPost(1);
     }
 }

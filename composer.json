@@ -8,6 +8,7 @@
         }
     ],
     "require": {
+        "cakephp/orm": "^3.4",
         "silex/silex": "^2.0",
         "youshido/silex-graphql": "^0.0.2"
     },
