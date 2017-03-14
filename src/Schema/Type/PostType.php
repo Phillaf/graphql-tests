@@ -8,7 +8,7 @@ use Youshido\GraphQL\Type\Scalar\BooleanType;
 use Youshido\GraphQL\Type\Scalar\IntType;
 use Youshido\GraphQL\Type\Scalar\StringType;
 
-class PostType extends AbstractObjectType   // extending abstract Object type
+class PostType extends AbstractObjectType
 {
     public function build($config)
     {
