@@ -4,6 +4,7 @@ namespace App\Schema\Mutation;
 
 use App\Schema\Type\PostInputType;
 use App\Schema\Type\PostType;
+use Cake\ORM\TableRegistry;
 use Youshido\GraphQL\Config\Field\FieldConfig;
 use Youshido\GraphQL\Execution\ResolveInfo;
 use Youshido\GraphQL\Field\AbstractField;
@@ -30,10 +31,9 @@ class CreatePost extends AbstractField
 
     public function resolve($value, array $args, ResolveInfo $info)
     {
-        var_dump($info);exit;
         $posts = TableRegistry::get('Posts');
         $results = $posts->find()->first();
-        return $results->toArray();
+        //return $results->toArray();
 
         return [
             'title' => 'hi',
