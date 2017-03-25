@@ -3,9 +3,9 @@
 namespace App;
 
 use App\Core\Provider\GoogleOAuth;
+use App\Core\Provider\GraphQLControllerProvider;
 use App\Schema\Schema;
 use Silex\Application as BaseApplication;
-use Youshido\Silex\Provider\GraphQLControllerProvider;
 
 class Application extends BaseApplication
 {

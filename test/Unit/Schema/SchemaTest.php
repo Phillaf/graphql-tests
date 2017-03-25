@@ -34,6 +34,12 @@ class SchemaTest extends TestCase
     private function process(string $request) : string
     {
         $processor = new Processor(new Schema());
+
+        $processor
+            ->getExecutionContext()
+            ->getContainer()
+            ->set('user', 'hello!');
+
         $response = $processor->processPayload($request)->getResponseData();
         return json_encode($response);
     }
