@@ -10,7 +10,8 @@
     "require": {
         "cakephp/orm": "^3.4",
         "silex/silex": "^2.0",
-        "youshido/graphql": "v1.4.2.20"
+        "youshido/graphql": "v1.4.2.20",
+        "lcobucci/jwt": "^3.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.0",
