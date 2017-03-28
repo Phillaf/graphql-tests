@@ -26,7 +26,7 @@ class ApplicationTest extends TestCase
 
     private function process(array $data) : string
     {
-        $request = Request::create('/', 'post', $data, [], [], [], null);
+        $request = Request::create('/', 'POST', $data);
         $request->headers->set('Authorization', 'Bearer _my_token_');
         $app = new Application();
 

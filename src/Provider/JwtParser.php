@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Core\Provider;
+namespace App\Provider;
 
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 
-class GoogleOAuth implements ServiceProviderInterface
+class JwtParser implements ServiceProviderInterface
 {
     public function register(Container $app)
     {

@@ -7,6 +7,12 @@
         </testsuite>
     </testsuites>
 
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./src</directory>
+        </whitelist>
+    </filter>
+
     <listeners>
         <listener class="\App\Test\MigrationListener"></listener>
     </listeners>
