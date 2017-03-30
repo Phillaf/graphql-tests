@@ -23,3 +23,7 @@ Configure::write('jwt', [
     'idLength' => '16',
     'key' => 'testing',
 ]);
+
+Configure::write('App', [
+    'namespace' => 'App',
+]);

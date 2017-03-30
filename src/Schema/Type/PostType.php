@@ -20,7 +20,6 @@ class PostType extends AbstractObjectType
                     'truncate' => new BooleanType(),
                 ],
             ],
-            'title' => new StringType(),
             'body' => new StringType(),
         ]);
     }

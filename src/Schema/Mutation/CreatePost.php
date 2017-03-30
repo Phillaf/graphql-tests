@@ -32,7 +32,11 @@ class CreatePost extends AbstractField
     public function resolve($value, array $args, ResolveInfo $info)
     {
         $posts = TableRegistry::get('Posts');
-        $results = $posts->find()->first();
+
+        $post = $posts->newEntity($args['post']);
+        $result = $posts->save($post);
+        var_dump($result);exit;
+        //$results = $posts->find()->first();
         //return $results->toArray();
 
         return [
