@@ -2,15 +2,28 @@
 
 namespace App\Test\Unit\Provider;
 
-use App\Provider\Controller;
+use App\Application;
+use App\Provider\JsonParser;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpFoundation\Request;
 
 class JwtParserTest extends TestCase
 {
-    /** @test */
-    public function sauce()
+    private $app;
+    private $data;
+    private $request;
+
+    public function setUp()
     {
-        $this->assertTrue(false);
+        $this->app = new Application();
+        $this->data = ['token' => 'dude'];
+        $this->request = Request::create('/', 'post', $this->data);
+    }
+
+    /** @test */
+    public function tokenIsParsed()
+    {
+        $response = $this->app->handle($this->request);
+        $this->assertEquals('hello', $this->request->get('user'));
     }
 }
-

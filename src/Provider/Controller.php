@@ -19,11 +19,12 @@ class Controller implements ControllerProviderInterface
             ->match('/', function (Application $app, Request $request) {
                 $query = $request->get('query', '');
                 $variables = $request->get('variables', []);
-                $processor = $app['processor'];
+                $user = $request->get('user', []);
 
-                $processor->processPayload($query, $variables);
+                $app['processor_context']->set('user', $user);
+                $app['processor']->processPayload($query, $variables);
 
-                return $app->json($processor->getResponseData());
+                return $app->json($app['processor']->getResponseData());
             });
 
         return $controllers;

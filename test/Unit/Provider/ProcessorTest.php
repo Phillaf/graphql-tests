@@ -2,14 +2,29 @@
 
 namespace App\Test\Unit\Provider;
 
-use App\Provider\Controller;
+use App\Application;
 use PHPUnit\Framework\TestCase;
+use Youshido\GraphQL\Execution\Processor;
 
 class ProcessorTest extends TestCase
 {
-    /** @test */
-    public function sauce()
+    public function setUp()
     {
-        $this->assertTrue(false);
+        $this->app = new Application();
+    }
+
+    /** @test */
+    public function defaultSchemaExists()
+    {
+        $schemaClass = $this->app['schema_class'];
+        $schema = $this->app['schema_factory'];
+        $this->assertEquals(get_class($schema), $schemaClass);
+    }
+
+    /** @test */
+    public function processorIsBuilt()
+    {
+        $processor = $this->app['processor'];
+        $this->assertEquals(get_class($processor), Processor::class);
     }
 }

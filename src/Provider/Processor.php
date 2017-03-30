@@ -17,15 +17,11 @@ class Processor implements ServiceProviderInterface
         });
 
         $app['processor'] = function ($app) {
+            return new GraphQLProcessor($app['schema_factory']);
+        };
 
-            $processor = new GraphQLProcessor($app['schema_factory']);
-
-            $processor
-                ->getExecutionContext()
-                ->getContainer()
-                ->set('user', 'hello!');
-
-            return $processor;
+        $app['processor_context'] = function ($app) {
+            return $app['processor']->getExecutionContext()->getContainer();
         };
     }
 }

@@ -14,8 +14,8 @@ class Application extends BaseApplication
     {
         parent::__construct();
 
-        $this->register(new JwtParser());
         $this->register(new JsonParser());
+        $this->register(new JwtParser());
         $this->register(new Processor());
         $this->mount('/', new Controller());
     }

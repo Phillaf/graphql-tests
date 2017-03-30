@@ -11,7 +11,6 @@ class JsonParserTest extends TestCase
 {
     private $app;
     private $data;
-    private $register;
     private $request;
 
     public function setUp()
