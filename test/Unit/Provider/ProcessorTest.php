@@ -17,7 +17,7 @@ class ProcessorTest extends TestCase
     public function defaultSchemaExists()
     {
         $schemaClass = $this->app['schema_class'];
-        $schema = $this->app['schema_factory'];
+        $schema = $this->app['schema'];
         $this->assertEquals(get_class($schema), $schemaClass);
     }
 

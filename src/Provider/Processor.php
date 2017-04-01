@@ -12,12 +12,12 @@ class Processor implements ServiceProviderInterface
     {
         $app['schema_class'] = 'App\\Schema\\Schema';
 
-        $app['schema_factory'] = $app->factory(function ($app) {
+        $app['schema'] = function ($app) {
             return new $app['schema_class']();
-        });
+        };
 
         $app['processor'] = function ($app) {
-            return new GraphQLProcessor($app['schema_factory']);
+            return new GraphQLProcessor($app['schema']);
         };
 
         $app['processor_context'] = function ($app) {

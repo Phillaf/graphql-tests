@@ -11,7 +11,6 @@ class Jwt
 {
     public static function create(array $data = []) : Token
     {
-
         $token = (new Builder())
             ->setIssuer(Configure::read('jwt.issuer'))
             ->setAudience(Configure::read('jwt.audience'))
