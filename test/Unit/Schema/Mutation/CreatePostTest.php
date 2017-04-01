@@ -9,6 +9,11 @@ use PHPUnit\Framework\TestCase;
 class CreatePostTest extends TestCase
 {
     use AssertResponse;
+    use Seeder;
+
+    private $seeds = [
+        'Posts',
+    ];
 
     private $request = <<<QUERY
 mutation {
