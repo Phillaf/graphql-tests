@@ -23,14 +23,6 @@ class SchemaTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    /** @test */
-    public function likePost()
-    {
-        $result = $this->process('mutation { likePost(id: 5) }');
-        $expected = '{"data":{"likePost":2}}';
-        $this->assertEquals($expected, $result);
-    }
-
     private function process(string $request) : string
     {
         $processor = new Processor(new Schema());

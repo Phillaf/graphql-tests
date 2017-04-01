@@ -15,7 +15,6 @@ class Schema extends AbstractSchema
             new Query\LatestPost,
         ]);
         $config->getMutation()->addFields([
-            new Mutation\LikePost,
             new Mutation\CreatePost,
         ]);
     }
