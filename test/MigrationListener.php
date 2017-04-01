@@ -2,7 +2,7 @@
 
 namespace App\Test;
 
-use App\Core\Test\Phinx;
+use App\Test\Phinx;
 use PHPUnit\Framework\BaseTestListener;
 use PHPUnit\Framework\TestSuite;
 

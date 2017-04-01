@@ -4,7 +4,7 @@ namespace App\Test\Unit;
 
 use App\Application;
 use App\Core\JwtFactory;
-use App\Core\Test\Database;
+use App\Test\Database;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 

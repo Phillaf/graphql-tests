@@ -2,7 +2,7 @@
 
 namespace App\Test\Unit\Schema;
 
-use App\Core\Test\Database;
+use App\Test\Database;
 use App\Schema\Schema;
 use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Execution\Processor;

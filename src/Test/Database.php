@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Core\Test;
+namespace App\Test;
 
-use App\Core\Test\Phinx;
+use App\Test\Phinx;
 use Cake\Datasource\ConnectionManager;
 use Cake\ORM\TableRegistry;
 

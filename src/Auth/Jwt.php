@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core;
+namespace App\Auth;
 
 use Cake\Core\Configure;
 use Lcobucci\JWT\Builder;

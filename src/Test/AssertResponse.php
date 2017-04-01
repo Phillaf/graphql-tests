@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Test;
+namespace App\Test;
 
 use App\Application;
 

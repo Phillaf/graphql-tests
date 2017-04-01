@@ -2,8 +2,8 @@
 
 namespace App\Test\Unit\Schema\Mutation;
 
-use App\Core\Test\AssertResponse;
-use App\Core\Test\Database;
+use App\Test\AssertResponse;
+use App\Test\Database;
 use PHPUnit\Framework\TestCase;
 
 class CreatePostTest extends TestCase

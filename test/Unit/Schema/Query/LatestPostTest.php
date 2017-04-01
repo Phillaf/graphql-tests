@@ -2,8 +2,8 @@
 
 namespace App\Test\Unit\Schema\Query;
 
-use App\Core\Test\AssertResponse;
-use App\Core\Test\Database;
+use App\Test\AssertResponse;
+use App\Test\Database;
 use PHPUnit\Framework\TestCase;
 
 class LatestPostTest extends TestCase

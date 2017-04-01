@@ -11,7 +11,7 @@ class JwtParser implements ServiceProviderInterface
 {
     public function register(Container $app)
     {
-        $app['auth_class'] = 'App\\Core\\Auth\\Auth';
+        $app['auth_class'] = 'App\\Auth\\Auth';
 
         $app['auth'] = function ($app) {
             return new $app['auth_class']();
@@ -19,8 +19,7 @@ class JwtParser implements ServiceProviderInterface
 
         $app->before(function (Request $request, Application $app) {
             $token = $request->get('access_token');
-            $user = $app['auth']->getUser($token);
-            $request->attributes->set('user', $user);
+            $app['user'] = $app['auth']->getUser($token);
         });
     }
 }
