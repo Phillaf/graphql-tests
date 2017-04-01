@@ -2,21 +2,24 @@
 
 namespace App\Test\Unit\Schema;
 
-use App\Core\Test\Seeder;
+use App\Core\Test\Database;
 use App\Schema\Schema;
 use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Execution\Processor;
 
 class SchemaTest extends TestCase
 {
-    use Seeder;
+    public function setUp()
+    {
+        Database::seed(['Posts']);
+    }
 
-    private $seeds = [
-        'Posts',
-    ];
+    public function tearDown()
+    {
+        Database::truncate(['Posts']);
+    }
 
-    /** @test */
-    public function latestPost()
+    public function testLatestPost()
     {
         $result = $this->process('{ latestPost {title, body} }');
         $expected = '{"data":{"latestPost":{"title":"Post 1","body":"Content 1"}}}';

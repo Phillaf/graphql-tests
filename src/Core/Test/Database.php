@@ -6,21 +6,21 @@ use App\Core\Test\Phinx;
 use Cake\Datasource\ConnectionManager;
 use Cake\ORM\TableRegistry;
 
-trait Seeder
+class Database
 {
-    public function setUp()
+    public static function seed(array $seeds)
     {
         $phinx = Phinx::get();
-        foreach ($this->seeds as $seed) {
+        foreach ($seeds as $seed) {
             $phinx->getSeed(null, null, $seed);
         }
     }
 
-    public function tearDown()
+    public static function truncate(array $tables)
     {
         $db = ConnectionManager::get('default');
-        foreach ($this->seeds as $seed) {
-            $sql = TableRegistry::get($seed)->getSchema()->truncateSql($db);
+        foreach ($tables as $table) {
+            $sql = TableRegistry::get($table)->getSchema()->truncateSql($db);
 
             foreach ($sql as $stmt) {
                 $db->execute($stmt)->closeCursor();

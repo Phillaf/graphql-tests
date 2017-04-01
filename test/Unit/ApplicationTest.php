@@ -4,17 +4,21 @@ namespace App\Test\Unit;
 
 use App\Application;
 use App\Core\JwtFactory;
-use App\Core\Test\Seeder;
+use App\Core\Test\Database;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
 class ApplicationTest extends TestCase
 {
-    use Seeder;
+    public function setUp()
+    {
+        Database::seed(['Posts']);
+    }
 
-    private $seeds = [
-        'Posts',
-    ];
+    public function tearDown()
+    {
+        Database::truncate(['Posts']);
+    }
 
     /** @test */
     public function build()

@@ -3,17 +3,12 @@
 namespace App\Test\Unit\Schema\Mutation;
 
 use App\Core\Test\AssertResponse;
-use App\Core\Test\Seeder;
+use App\Core\Test\Database;
 use PHPUnit\Framework\TestCase;
 
 class CreatePostTest extends TestCase
 {
     use AssertResponse;
-    use Seeder;
-
-    private $seeds = [
-        'Posts',
-    ];
 
     private $request = <<<QUERY
 mutation {
@@ -31,9 +26,18 @@ mutation {
 }
 QUERY;
 
-    public function testCreatePost()
+    private $response = [
+        "data" => [
+            "createPost" => [
+                "title" => "hi",
+                "body" => "dude",
+            ]
+        ]
+    ];
+
+
+    public function tearDown()
     {
-        $expected = '{"data":{"createPost":{"title":"hi","body":"dude"}}}';
-        $this->assertResponse($expected);
+        Database::truncate(['Posts']);
     }
 }

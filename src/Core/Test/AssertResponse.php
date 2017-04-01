@@ -2,15 +2,22 @@
 
 namespace App\Core\Test;
 
-use App\Schema\Schema;
-use Youshido\GraphQL\Execution\Processor;
+use App\Application;
 
 trait AssertResponse
 {
-    private function assertResponse(string $expected) : void
+    /** @test */
+    public function testOperation() : void
     {
-        $processor = new Processor(new Schema());
-        $response = $processor->processPayload($this->request)->getResponseData();
-        $this->assertEquals($expected, json_encode($response));
+        $app = new Application();
+
+        $response = $app['processor']
+            ->processPayload($this->request)
+            ->getResponseData();
+
+        $result = json_encode($response);
+        $expected = json_encode($this->response);
+
+        $this->assertEquals($expected, $result);
     }
 }
