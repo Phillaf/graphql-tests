@@ -2,12 +2,12 @@
 
 namespace App\Provider;
 
+use App\Controller;
 use Silex\Api\ControllerProviderInterface;
 use Silex\Application;
-use Silex\ControllerCollection;
 use Symfony\Component\HttpFoundation\Request;
 
-class Controller implements ControllerProviderInterface
+class ControllerProvider implements ControllerProviderInterface
 {
     protected $schema;
 
@@ -19,13 +19,11 @@ class Controller implements ControllerProviderInterface
             ->match('/', function (Application $app, Request $request) {
                 $query = $request->get('query', '');
                 $variables = $request->get('variables', []);
-
-                $app['processor_context']->set('user', $app['user']);
-                $app['processor']->processPayload($query, $variables);
-
-                return $app->json($app['processor']->getResponseData());
+                $response = $app['controller']->execute($query, $variables);
+                return $app->json($response);
             });
 
         return $controllers;
     }
+
 }

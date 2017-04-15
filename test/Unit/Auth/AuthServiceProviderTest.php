@@ -18,6 +18,8 @@ class AuthServiceProviderTest extends TestCase
     public function setUp()
     {
         $this->app = (new Application())->register(new AuthServiceProvider);
+        $this->app->match('/', function () {
+        });
     }
 
     /** @test */
@@ -52,10 +54,6 @@ class AuthServiceProviderTest extends TestCase
     /** @test */
     public function tokenIsParsed()
     {
-        $this->app->get('/', function () {
-            echo 'hi';
-        });
-
         $expiration = strtotime('+1 minute', time());
         $data = ['email' => 'phil@phillafrance.com'];
         $token = $this->app['auth_jwt']->create($expiration, $data);

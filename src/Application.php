@@ -2,11 +2,11 @@
 
 namespace App;
 
-use App\Provider\Controller;
-use App\Provider\JwtParser;
-use App\Provider\JsonParser;
-use App\Provider\Processor;
 use Silex\Application as BaseApplication;
+use App\Provider\JsonParser;
+use App\Auth\AuthServiceProvider;
+use App\Provider\FrameworkProvider;
+use App\Provider\ControllerProvider;
 
 class Application extends BaseApplication
 {
@@ -15,8 +15,8 @@ class Application extends BaseApplication
         parent::__construct();
 
         $this->register(new JsonParser());
-        $this->register(new JwtParser());
-        $this->register(new Processor());
-        $this->mount('/', new Controller());
+        $this->register(new AuthServiceProvider());
+        $this->register(new FrameworkProvider());
+        $this->mount('/', new ControllerProvider());
     }
 }

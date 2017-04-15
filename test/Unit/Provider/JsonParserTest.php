@@ -2,9 +2,9 @@
 
 namespace App\Test\Unit\Provider;
 
-use App\Application;
 use App\Provider\JsonParser;
 use PHPUnit\Framework\TestCase;
+use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
 class JsonParserTest extends TestCase
@@ -15,7 +15,10 @@ class JsonParserTest extends TestCase
 
     public function setUp()
     {
-        $this->app = new Application();
+        $this->app = (new Application())->register(new JsonParser());
+        $this->app->match('/', function () {
+        });
+
         $this->data = ['sup' => 'dude'];
         $this->request = Request::create('/', 'post', [], [], [], [], json_encode($this->data));
     }
@@ -23,7 +26,7 @@ class JsonParserTest extends TestCase
     /** @test */
     public function defaultJsonIsNotParsed()
     {
-        $response = $this->app->handle($this->request);
+        $this->app->handle($this->request);
         $this->assertEquals(null, $this->request->get('sup'));
     }
 
@@ -31,7 +34,7 @@ class JsonParserTest extends TestCase
     public function jsonHeaderIsParsed()
     {
         $this->request->headers->set('Content-Type', 'application/json');
-        $response = $this->app->handle($this->request);
+        $this->app->handle($this->request);
         $this->assertEquals('dude', $this->request->get('sup'));
     }
 }
