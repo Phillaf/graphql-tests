@@ -2,35 +2,50 @@
 
 namespace App\Auth;
 
-use Cake\Core\Configure;
 use Lcobucci\JWT\Builder;
+use Lcobucci\JWT\Signer;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Lcobucci\JWT\Token;
+use Lcobucci\JWT\ValidationData;
 
 class Jwt
 {
-    public static function create(array $data = []) : Token
+    public function __construct(
+        string $key,
+        ValidationData $validation = null,
+        Signer $signer = null
+    ) {
+        $this->key = $key;
+        $this->validation = $validation ?? new ValidationData;
+        $this->signer = $signer ?? new Sha256;
+    }
+
+    public function create(int $expiration, array $data = []) : Token
     {
+        $issuer = $this->validation->get('iss');
+        $audience = $this->validation->get('aud');
+        $subject = $this->validation->get('sub');
+
         $token = (new Builder())
-            ->setIssuer(Configure::read('jwt.issuer'))
-            ->setAudience(Configure::read('jwt.audience'))
-            ->setNotBefore(time())
-            ->setSubject(Configure::read('jwt.subject'))
-            ->setId(base64_encode(random_bytes(Configure::read('jwt.idLength'))), true)
+            ->setIssuer($issuer)
+            ->setAudience($audience)
+            ->setSubject($subject)
             ->setIssuedAt(time())
-            ->setExpiration(time() + Configure::read('jwt.expiration'));
+            ->setExpiration($expiration);
 
         foreach ($data as $key => $value) {
             $token->set($key, $value);
         }
 
         return $token
-            ->sign(new Sha256, Configure::read('jwt.key'))
+            ->sign($this->signer, $this->key)
             ->getToken();
     }
 
-    public static function verify(Token $token) : bool
+    public function accept(Token $token) : bool
     {
-        return $token->verify(new Sha256, Configure::read('jwt.key'));
+        $verified = $token->verify($this->signer, $this->key);
+        $valid = $token->validate($this->validation);
+        return $verified && $valid;
     }
 }

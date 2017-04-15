@@ -34,7 +34,7 @@ class ControllerTest extends TestCase
         $this->data = [
             'query' => 'hey',
             'variables' => ['sup' => 'bro'],
-            'user' => 'hello',
+            'access_token' => 'phil@phillafrance.com',
         ];
 
         $this->request = Request::create('/', 'post', $this->data);
@@ -68,8 +68,6 @@ class ControllerTest extends TestCase
     /** @test */
     public function processorContainsUser()
     {
-        $this->markTestSkipped("user");
-        return;
         $this->container
             ->expects($this->once())
             ->method('set')
